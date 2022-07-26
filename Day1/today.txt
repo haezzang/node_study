@@ -1,0 +1,76 @@
+>>논블록킹
+오래 걸리는 함수를 백그라우늗로 보내서 다음코드가 먼저 실행되게 하고 오래 걸리는 함수를 실행 하는 것->node.js가 사용하는 방식
+
+*블록킹 방식 ->자바
+
+>>이벤트기반 비동기식 방식
+대규모 네트워크 애플리케이션 개발에 적합
+
+
+>>콜백함수
+콜백함수는 특정상황에서 실행될 함수를 시스템에 등록해두면, 그러한 상황이 발생되었을 때 시스템이 자동으로 실행해주는 함수
+콜백함수를 사용하면 일을 처리하는 동안 다른 일도 할 수 있다
+
+
+>>화살표 함수
+
+1. 기본 함수
+const fs=require('fs'); //파일 읽기
+ fs.readFile('./basic/app11.js',function(err,data){
+     if(err){
+        throw err;
+    }
+     console.log(data.toString()); //파일내용 읽음
+ });
+
+
+2. 화살표 함수로 변경
+const fs=require('fs'); //파일 읽기
+fs.readFile('./basic/app11.js',(err,data)=>{
+    if(err){
+        throw err;
+    }
+    console.log(data.toString()); //파일내용 읽음
+});
+
+
+>>비동기함수
+const timeout=setTimeout(()=>{
+    console.log('1.5초 후 실행');
+},1500)
+const interval=setInterval(()=>{
+    console.log('1초마다 실행');
+},1000)
+
+
+>>os 모듈
+const os=require('os');
+
+console.log('os.hostname() : ',os.hostname());
+
+console.log('경로========================');
+console.log('os.homedir() : ',os.homedir());
+console.log('os.tmpdir() : ',os.tmpdir());
+
+console.log('메모리========================');
+console.log('os.freemem() : ',os.freemem());
+console.log('os.totalmem() : ',os.totalmem());
+
+>>path 모듈
+const path=require('path')
+
+const string=__filename;
+
+console.log('파일명 : ', path.__filename);
+console.log('분리기호 : ', path.sep);
+console.log('환경변수 구분자 : ', path.delimiter);
+
+console.log('폴더명 : ', path.dirname(string));
+console.log('확장자명 : ', path.extname(string));
+console.log('전체파일명 : ', path.basename(string));
+
+console.log('절대경로 : ', path.isAbsolute('C:\\'));
+console.log('path.isAbsolute : ', path.isAbsolute('D:\\basic'));
+
+console.log('상대경로 : ', path.relative("d:\basic","d:\\"));
+console.log('상대경로 : ', path.relative("d:\basic","d:\\app19"));
