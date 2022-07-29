@@ -3,8 +3,7 @@ var http=require('http');
 var static=require('serve-static'); //경로 static를 위한 미들웨어
 var path=require('path');
 var bodyParser =require('body-parser');
-const exp = require('constants');
-const { runInNewContext } = require('vm');
+
 
 
 //익스프레스 시작

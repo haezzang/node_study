@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 
 //익스프레스 시작
 var app =express();
-var router=express.Router();
+var router=express.Router(); //라우터 시작할 때 위보다 선언
 app.set('port', process.env.port || 4444);
 app.use(static(path.join(__dirname,'media')));
 
