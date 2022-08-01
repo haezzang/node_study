@@ -7,6 +7,10 @@ var cookieParser = require('cookie-parser')
 var multer = require('multer')
 var cors = require('cors')
 var fs=require('fs')
+
+var expressErrorHandler=require('express-error-handler');
+var errorHandler=require('errorhandler');
+
 var router = express.Router();
 
 // 익스프레스 시작
@@ -20,9 +24,8 @@ app.use(cookieParser())
 
 // static 미들웨어 사용 media추가
 app.use('/media', static(path.join(__dirname,'media')));
-
-
 app.use('/', router);
+
 
 
 var storage=multer.diskStorage({
@@ -80,6 +83,15 @@ res.end();
 });
 
 
+//404에러핸들러
+var errorHandler=expressErrorHandler({
+    static :{
+        '404' : './media/404error.html'
+    }
+});
+
+app.use(expressErrorHandler.httpError(404));
+app.use(errorHandler);
 
 var server=http.createServer(app).listen(app.get('port'),function(){
     console.log("익스프레스 웹서버 실행 : "+app.get('port'));
